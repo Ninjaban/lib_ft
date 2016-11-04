@@ -6,7 +6,7 @@
 #    By: jcarra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 13:41:38 by jcarra            #+#    #+#              #
-#    Updated: 2016/11/03 17:02:41 by jcarra           ###   ########.fr        #
+#    Updated: 2016/11/04 18:51:02 by jcarra           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -18,9 +18,28 @@ SRC_PART1		=	ft_bzero.c \
 					ft_memcpy.c \
 					ft_memmove.c \
 					ft_memset.c \
+					ft_strcmp.c \
+					ft_strncmp.c \
+					ft_memcmp.c \
+					ft_strchr.c \
+					ft_strrchr.c \
 					ft_strlen.c \
+					ft_strdup.c \
+					ft_strcat.c \
+					ft_strncat.c \
+					ft_strlcat.c \
+					ft_strcpy.c \
+					ft_atoi.c \
+					ft_strncpy.c \
+					ft_strstr.c \
+					ft_strnstr.c \
 					ft_tolower.c \
-					ft_toupper.c
+					ft_toupper.c \
+					ft_isalpha.c \
+					ft_isdigit.c \
+					ft_isalnum.c \
+					ft_isprint.c \
+					ft_isascii.c
 
 SRC_PART2		=	ft_memalloc.c \
 					ft_memdel.c \
@@ -44,6 +63,9 @@ SRC_PART2		=	ft_memalloc.c \
 					ft_putstr_fd.c \
 					ft_putnbr_fd.c \
 					ft_putendl_fd.c \
+					ft_strsplit.c \
+					ft_itoa.c \
+					ft_revnbr.c \
 					ft_revstr.c
 
 DIRSRC_PART1	=	Part\ 1/
@@ -64,7 +86,6 @@ ECHO			=	printf
 
 
 all		:		$(NAME)
-			   	@$(ECHO) ''
 
 $(NAME)	:
 				@$(CC) $(CFLAGS) -c $(PART1) $(PART2)

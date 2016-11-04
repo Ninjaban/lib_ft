@@ -6,7 +6,7 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 12:59:27 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/03 15:21:40 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/04 13:05:15 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ char		*ft_strtrim(char const *s)
 	while (s[end] == ' ' || s[end] == '\t' || s[end] == '\n')
 		end = end - 1;
 	if (end < start)
-		return (NULL);
-	if ((str = malloc(end - start + 1)) == NULL)
+	{
+		if ((str = malloc(1)) == NULL)
+			return (NULL);
+	}
+	else if ((str = malloc(end - start + 2)) == NULL)
 		return (NULL);
 	while (start <= end)
 		str[n++] = s[start++];
