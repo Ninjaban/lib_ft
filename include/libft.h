@@ -83,4 +83,15 @@ char				**ft_strsplit(char const *s, char c);
 char				*ft_revstr(char *str);
 unsigned long int	ft_revnbr(unsigned long int nbr);
 
+/*
+**	Bonus
+*/
+
+typedef struct		s_list
+{
+  void			*content;
+  size_t		content_size;
+  struct s_list		*next;
+}			t_list;
+
 #endif
