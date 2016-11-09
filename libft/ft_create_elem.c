@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 09:28:16 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:31:29 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+t_lst		*ft_create_elem(void *data)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	t_lst	*new_elem;
 
-	if (lst == NULL)
+	if ((new_elem = malloc(sizeof(t_list))) == NULL)
 		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	new_elem->next = NULL;
+	new_elem->data = data;
+	return (new_elem);
 }

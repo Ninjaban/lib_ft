@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/04 11:36:29 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 10:26:56 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+char		*ft_strstr(const char *str, const char *src)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	int		n;
 
-	if (lst == NULL)
-		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	n = 0;
+	if (!src[0])
+		return ((char *)str);
+	while (str[n])
+	{
+		while (str[n] && str[n] != src[0])
+			n = n + 1;
+		if (ft_strncmp(str + n, src, ft_strlen((char *)src)) == 0)
+			return ((char *)(str + n));
+		if (str[n])
+			n = n + 1;
+	}
+	return (NULL);
 }

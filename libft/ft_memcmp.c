@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/04 13:18:26 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 10:55:55 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+int					ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	if (lst == NULL)
-		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	while (n-- > 0)
+	{
+		str1 = (unsigned char *)s1;
+		str2 = (unsigned char *)s2;
+		if (*str1 != *str2)
+			return (*str1 - *str2);
+		s1++;
+		s2++;
+	}
+	return (0);
 }

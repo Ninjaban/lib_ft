@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/04 12:38:04 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/07 12:50:48 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+size_t			ft_strlcat(char *dest, const char *src, size_t size)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	char		*d;
+	const char	*s;
+	size_t		n;
+	size_t		len;
 
-	if (lst == NULL)
-		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	d = dest;
+	s = src;
+	n = size;
+	while (*d != '\0' && n-- != 0)
+		d++;
+	len = d - dest;
+	n = size - len;
+	if (n == 0)
+		return (len + ft_strlen(s));
+	while (*s != '\0' && n-- != 1)
+		*d++ = *s++;
+	while (*s != '\0')
+		s++;
+	*d = '\0';
+	return (len + (s - src));
 }

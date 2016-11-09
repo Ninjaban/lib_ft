@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 12:02:33 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/03 14:59:13 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+char		*ft_strjoin(char const *s1, char const *s2)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	char	*str;
+	int		n;
+	int		i;
 
-	if (lst == NULL)
+	n = 0;
+	i = 0;
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	if ((str = malloc(ft_strlen((char *)s1) +
+						ft_strlen((char *)s2) + 1)) == NULL)
+		return (NULL);
+	while (s1[i])
+		str[n++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		str[n++] = s2[i++];
+	str[n] = '\0';
+	return (str);
 }

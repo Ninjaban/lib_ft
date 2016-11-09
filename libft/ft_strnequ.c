@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:43:42 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 10:33:33 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+int			ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	size_t	i;
 
-	if (lst == NULL)
-		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	i = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	return ((ft_strncmp(s1, s2, n) == 0) ? 1 : 0);
 }

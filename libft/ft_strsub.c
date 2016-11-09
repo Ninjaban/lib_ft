@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 11:58:09 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/03 14:58:10 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	char	*str;
+	size_t	n;
 
-	if (lst == NULL)
+	n = 0;
+	if (s == NULL)
 		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	if ((str = malloc(len + 1)) == NULL)
+		return (NULL);
+	while (n < len)
+	{
+		str[n] = s[start + n];
+		n = n + 1;
+	}
+	str[n] = '\0';
+	return (str);
 }

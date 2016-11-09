@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_list_push_params.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 10:14:23 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 11:32:14 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+t_lst	*ft_list_push_params(int ac, char **av)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	int		n;
+	t_lst	*new;
 
-	if (lst == NULL)
-		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
+	n = 1;
+	new = NULL;
+	if (ac > 1)
+		new = ft_create_elem(av[n++]);
+	while (n < ac)
+	{
+		new->next = ft_create_elem(av[n++]);
 		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	}
+	if (new != NULL)
+		new->next = ft_create_elem(av[0]);
+	else
+		new = ft_create_elem(av[0]);
+	return (new);
 }

@@ -6,7 +6,7 @@
 #    By: jcarra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 13:41:38 by jcarra            #+#    #+#              #
-#    Updated: 2016/11/07 08:52:50 by jcarra           ###   ########.fr        #
+#    Updated: 2016/11/09 11:40:38 by jcarra           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -75,17 +75,31 @@ SRC_BONUS		=	ft_lstadd.c \
 					ft_lstmap.c \
 					ft_lstnew.c
 
-DIRSRC_PART1	=	Part\ 1/
-DIRSRC_PART2	=	Part\ 2/
-DIRSRC_BONUS	=	Bonus/
-DIRINC			=	include/
+SRC_LIST		=	ft_create_elem.c \
+					ft_list_push_back.c \
+					ft_list_push_front.c \
+					ft_list_size.c \
+					ft_list_last.c \
+					ft_list_push_params.c \
+					ft_list_clear.c \
+					ft_list_at.c \
+					ft_list_reverse.c \
+					ft_list_foreach.c
+
+DIRSRC_PART1	=	./
+DIRSRC_PART2	=	./
+DIRSRC_BONUS	=	./
+DIRSRC_LIST		=	./
+DIRINC			=	./
 
 PART1			=	$(SRC_PART1:%=$(DIRSRC_PART1)%)
 PART2			=	$(SRC_PART2:%=$(DIRSRC_PART2)%)
 BONUS			=	$(SRC_BONUS:%=$(DIRSRC_BONUS)%)
+LIST			=	$(SRC_LIST:%=$(DIRSRC_LIST)%)
 OBJS_PART1		=	$(SRC_PART1:.c=.o)
 OBJS_PART2		=	$(SRC_PART2:.c=.o)
 OBJS_BONUS		=	$(SRC_BONUS:.c=.o)
+OBJS_LIST		=	$(SRC_LIST:.c=.o)
 
 CFLAGS			=	-Wall -Wextra -Werror -I./$(DIRINC)
 
@@ -98,12 +112,12 @@ ECHO			=	printf
 all		:		$(NAME)
 
 $(NAME)	:
-				@$(CC) $(CFLAGS) -c $(PART1) $(PART2) $(BONUS)
-				@$(LIB) $(NAME) $(OBJS_PART1) $(OBJS_PART2) $(OBJS_BONUS)
+				@$(CC) $(CFLAGS) -c $(PART1) $(PART2) $(BONUS) $(LIST)
+				@$(LIB) $(NAME) $(OBJS_PART1) $(OBJS_PART2) $(OBJS_BONUS) $(OBJS_LIST)
 				@$(ECHO) '\033[32m> Compiled\n\033[0m'
 
 clean	:
-				@$(RM) $(OBJS_PART1) $(OBJS_PART2) $(OBJS_BONUS)
+				@$(RM) $(OBJS_PART1) $(OBJS_PART2) $(OBJS_BONUS) $(OBJS_LIST)
 				@$(ECHO) '\033[31m> Directory cleaned\n\033[0m'
 
 fclean	:		clean

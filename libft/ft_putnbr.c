@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 08:47:29 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/07 09:04:05 by jcarra           ###   ########.fr       */
+/*   Created: 2016/11/03 15:53:55 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/09 10:15:55 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list (*f)(t_list *elem))
+void					ft_putnbr(int nbr)
 {
-	t_list	*start;
-	t_list	*new;
-	t_list	tmp;
+	unsigned long int	rev;
+	char				c;
 
-	if (lst == NULL)
-		return (NULL);
-	tmp = f(lst);
-	start = &tmp;
-	lst = lst->next;
-	if (lst == NULL)
-		return (start);
-	tmp = f(lst);
-	start->next = &tmp;
-	new = start->next;
-	lst = lst->next;
-	while (lst != NULL)
-    {
-		tmp = f(lst);
-		new->next = &tmp;
-		new = new->next;
-		lst = lst->next;
-    }
-	return (start);
+	if (nbr == 0)
+		ft_putstr("0");
+	else if (nbr == -2147483648)
+		ft_putstr("-2147483648");
+	else
+	{
+		if (nbr < 0)
+			ft_putchar('-');
+		rev = ABS(nbr);
+		rev = ft_revnbr(rev);
+		while (rev != 1)
+		{
+			c = rev % 10 + '0';
+			rev = rev / 10;
+			ft_putchar(c);
+		}
+	}
 }
