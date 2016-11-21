@@ -6,7 +6,7 @@
 #    By: jcarra <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 13:41:38 by jcarra            #+#    #+#              #
-#    Updated: 2016/11/07 08:52:50 by jcarra           ###   ########.fr        #
+#    Updated: 2016/11/16 09:09:53 by jcarra           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -68,12 +68,16 @@ SRC_PART2		=	ft_memalloc.c \
 					ft_revnbr.c \
 					ft_revstr.c
 
-SRC_BONUS		=	ft_lstadd.c \
-					ft_lstdel.c \
-					ft_lstdelone.c \
-					ft_lstiter.c \
-					ft_lstmap.c \
-					ft_lstnew.c
+SRC_BONUS		=	ft_create_elem.c \
+					ft_list_push_back.c \
+					ft_list_push_front.c \
+					ft_list_size.c \
+					ft_list_last.c \
+					ft_list_push_params.c \
+					ft_list_clear.c \
+					ft_list_at.c \
+					ft_list_reverse.c \
+					ft_list_foreach.c
 
 DIRSRC_PART1	=	Part\ 1/
 DIRSRC_PART2	=	Part\ 2/
@@ -100,16 +104,31 @@ all		:		$(NAME)
 $(NAME)	:
 				@$(CC) $(CFLAGS) -c $(PART1) $(PART2) $(BONUS)
 				@$(LIB) $(NAME) $(OBJS_PART1) $(OBJS_PART2) $(OBJS_BONUS)
-				@$(ECHO) '\033[32m> Compiled\n\033[0m'
+				@$(ECHO) '\033[32m> libft : Compiled\n\033[0m'
+
+part1 :
+				@$(CC) $(CFLAGS) -c $(PART1)
+				@$(LIB) $(NAME) $(OBJS_PART1)
+				@$(ECHO) '\033[32m> libft - Part 1 : Compiled\n\033[0m'
+
+part2 :
+				@$(CC) $(CFLAGS) -c $(PART2)
+				@$(LIB) $(NAME) $(OBJS_PART2)
+				@$(ECHO) '\033[32m> libft - Part 2 : Compiled\n\033[0m'
+
+bonus :
+				@$(CC) $(CFLAGS) -c $(BONUS)
+				@$(LIB) $(NAME) $(OBJS_BONUS)
+				@$(ECHO) '\033[32m> libft - BONUS : Compiled\n\033[0m'
 
 clean	:
 				@$(RM) $(OBJS_PART1) $(OBJS_PART2) $(OBJS_BONUS)
-				@$(ECHO) '\033[31m> Directory cleaned\n\033[0m'
+				@$(ECHO) '\033[31m> libft : Directory cleaned\n\033[0m'
 
 fclean	:		clean
 				@$(RM) $(NAME)
-				@$(ECHO) '\033[31m> Remove executable\n\033[0m'
+				@$(ECHO) '\033[31m> libft : Remove executable\n\033[0m'
 
 re		:		fclean all
 
-.PHONY	:		all clean fclean re
+.PHONY	:		all part1 part2 bonus clean fclean re

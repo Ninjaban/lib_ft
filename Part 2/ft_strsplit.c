@@ -6,7 +6,7 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 09:04:45 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/04 19:07:52 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/09 10:37:47 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	count_word(char const *s, char c)
 	int		word;
 
 	n = 0;
+	word = 0;
 	while (s[n] == c && s[n])
 		n = n + 1;
 	while (s[n])
@@ -83,8 +84,7 @@ char		**ft_strsplit(char const *s, char c)
 
 	if (s == NULL)
 		return (NULL);
-	if ((word = count_word(s, c)) == 0)
-		return (NULL);
+	word = count_word(s, c);
 	if ((tab = malloc(sizeof(char *) * (word + 1))) == NULL)
 		return (NULL);
 	while (word >= 0)

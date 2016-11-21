@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 15:53:55 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/09 10:15:55 by jcarra           ###   ########.fr       */
+/*   Created: 2016/07/19 09:28:16 by jcarra            #+#    #+#             */
+/*   Updated: 2016/11/16 09:14:20 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-void					ft_putnbr(int nbr)
+t_lst		*ft_create_elem(void *data)
 {
-	unsigned long int	rev;
-	char				c;
+	t_lst	*new_elem;
 
-	if (nbr == 0)
-		ft_putstr("0");
-	else if (nbr == -2147483648)
-		ft_putstr("-2147483648");
-	else
-	{
-		if (nbr < 0)
-			ft_putchar('-');
-		rev = ABS(nbr);
-		rev = ft_revnbr(rev);
-		while (rev != 1)
-		{
-			c = rev % 10 + '0';
-			rev = rev / 10;
-			ft_putchar(c);
-		}
-	}
+	if ((new_elem = malloc(sizeof(t_lst))) == NULL)
+		return (NULL);
+	new_elem->next = NULL;
+	new_elem->data = data;
+	return (new_elem);
 }

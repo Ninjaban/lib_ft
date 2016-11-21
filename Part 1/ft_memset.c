@@ -6,7 +6,7 @@
 /*   By: jcarra <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 11:05:19 by jcarra            #+#    #+#             */
-/*   Updated: 2016/11/03 14:03:36 by jcarra           ###   ########.fr       */
+/*   Updated: 2016/11/07 11:03:28 by jcarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 void		*ft_memset(void *str, int c, size_t n)
 {
 	char	*dst;
-	size_t	i;
 
 	dst = str;
-	i = 0;
-	while (i++ < n)
+	while (n--)
 		*dst++ = c;
-	return (dst);
+	return (str);
 }
